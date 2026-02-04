@@ -32,7 +32,12 @@ class Qwen3TTSBackend:
         name = model_name or MODEL_CUSTOM_VOICE
         device = device_map
         if device is None:
-            device = "cuda:0" if torch.cuda.is_available() else "cpu"
+            if torch.cuda.is_available():
+                device = "cuda:0"
+            elif getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
+                device = "mps"  # Apple Silicon 가속
+            else:
+                device = "cpu"
         dtype = torch_dtype
         if dtype is None:
             dtype = torch.bfloat16 if torch.cuda.is_available() else torch.float32
@@ -81,10 +86,12 @@ class Qwen3TTSBackend:
         text: List[str],
         language: List[str],
         voice_clone_prompt: Any,
+        **kwargs: Any,
     ) -> tuple:
-       
+        """kwargs는 max_new_tokens 등 generate 옵션 전달 (긴 문장 합성 시 max_new_tokens 증가)."""
         return self._model.generate_voice_clone(
             text=text,
             language=language,
             voice_clone_prompt=voice_clone_prompt,
+            **kwargs,
         )

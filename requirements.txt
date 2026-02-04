@@ -17,5 +17,6 @@ ctranslate2>=4.0.0
 # Qwen TTS voice clone (tts/, run_voice_clone.sh)
 # 참고: onnxruntime/qwen-tts는 Python 3.11 또는 3.12 필요 (3.13+ 미지원). 가상환경은 python3.11 로 생성.
 soundfile>=0.12.0
+pydub>=0.25.0
 qwen-tts>=0.0.5
 noisereduce>=3.0.0

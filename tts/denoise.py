@@ -15,7 +15,8 @@ except ImportError:
 
 def load_and_denoise_wav(path: str) -> Tuple[np.ndarray, int]:
     """
-    WAV 파일을 읽어 노이즈 제거
+    WAV 파일을 읽어 노이즈 제거.
+    soundfile 실패 시(포맷 미인식 등) librosa로 로드 후 노이즈 제거.
 
     Input:
         path: WAV 파일 경로.
@@ -30,7 +31,13 @@ def load_and_denoise_wav(path: str) -> Tuple[np.ndarray, int]:
     if nr is None:
         raise RuntimeError("노이즈 제거를 쓰려면 noisereduce를 설치하세요: pip install noisereduce")
 
-    data, sr = sf.read(path, dtype="float32")
+    try:
+        data, sr = sf.read(path, dtype="float32")
+    except Exception:
+        import librosa
+        data, sr = librosa.load(path, sr=None, mono=True, dtype=np.float32)
+        sr = int(sr)
+
     if data.ndim > 1:
         data = data.mean(axis=1)
 
