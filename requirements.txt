@@ -1,0 +1,20 @@
+# 전체 프로젝트 (Whisper 파인튜닝 + CTranslate2 변환 + Qwen TTS voice clone)
+# 설치: pip install -r requirements.txt
+
+# 공통
+torch>=2.0.0
+numpy>=1.26.0
+
+# Whisper 파인튜닝 (finetune_whisper.py) + CTranslate2 변환 (convert_to_ct2.py)
+datasets>=2.14.0
+transformers>=4.36.0
+evaluate>=0.4.0
+jiwer>=3.0.0
+tensorboard>=2.14.0
+librosa>=0.10.0
+ctranslate2>=4.0.0
+
+# Qwen TTS voice clone (tts/, run_voice_clone.sh)
+soundfile>=0.12.0
+qwen-tts>=0.0.5
+noisereduce>=3.0.0

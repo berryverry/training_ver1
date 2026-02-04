@@ -1,0 +1,71 @@
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# ML / 모델 & 체크포인트
+whisper-finetuned/
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.ckpt
+checkpoint-*/
+wandb/
+runs/
+lightning_logs/
+
+# 출력물 / 생성 파일 (outputs/ 안만 무시, 그 외 wav 등은 커밋)
+outputs/
+
+# 환경/시크릿
+.env
+.env.*
+!.env.example
+*.local
+
+# IDE / Cursor (cursoragent 제외)
+.idea/
+.vscode/
+.cursor/
+cursoragent
+*cursoragent*
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# 로그
+*.log
+logs/
+
+# 기타
+*.bak
+.cache/
